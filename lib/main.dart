@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:gallery_saver/gallery_saver.dart';
 
 Future<void> main() async {
   /// Ensures that the plugin services are initialized.
@@ -106,6 +107,8 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
             /// Display the location at which the image was stored using snackbar
             final snackBar = SnackBar(content: Text('Image stored at: ${image.path}'));
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+            GallerySaver.saveImage(image.path);
 
             /// If the picture was taken, display it in a new screen.
             await Navigator.of(context).push(MaterialPageRoute(
